@@ -16,7 +16,7 @@ export default function Home() {
       const data = await getTeams();
       setTeams(data);
 
-      // Encuentra el último ID más alto
+
       if (data && data.length > 0) {
         const maxId = Math.max(...data.map((team : Team) => parseInt(team.id, 10) || 0));
         setLastId(maxId);
@@ -35,7 +35,7 @@ export default function Home() {
 
   const handleAddTeam = async () => {
     if (newTeam.name && newTeam.description && newTeam.logo) {
-      const newId = lastId + 1; // Genera el próximo ID
+      const newId = lastId + 1; 
       const teamToAdd: Team = {
         id: newId.toString(),
         points: 0,
@@ -46,7 +46,7 @@ export default function Home() {
       try {
         const success = await addTeam(teamToAdd);
         if (success) {
-          setLastId(newId); // Actualiza el último ID
+          setLastId(newId); 
           setNewTeam({ name: '', description: '', logo: '' });
           setModalVisible(false);
           fetchTeams();
